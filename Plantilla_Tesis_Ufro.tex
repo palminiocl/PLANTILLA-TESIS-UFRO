@@ -1,0 +1,188 @@
+% ------------------------------------------------------------------------
+% Definiciones de AMS-LaTeX: UFRO Thesis  Ramiro Donoso, Marzo 2017 *
+% ------------------------------------------------------------------------
+% Paquetes por instalar: srcltx, algorithms, algorithmic, algorithm e idioma español.
+\documentclass[12pt,notitlepage]{report}
+\usepackage[spanish]{babel}		% Silabeo en español. (corte de palabras!)
+\usepackage[utf8]{inputenc}	% Caracteres con acentos.
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{graphicx}			% Para usar figuras JPG, PNG, etc...
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb} %letras matematicas (\mathbb{R})
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newlfont}
+\usepackage[inactive]{srcltx}  %SRC Specials for DVI search
+\usepackage{booktabs}
+\usepackage{nonfloat} % para usar tabcaption y figcaption.... tablas no flotantes.
+\usepackage{multirow} % para unir filas
+\usepackage{multicol} % para unir columnas
+\usepackage{dcolumn}
+\usepackage{subfigure} % permite la utilizacion de subfiguras en una misma figura
+\usepackage[subfigure]{tocloft}
+\usepackage{longtable} % para cortar tablas en mas de una pagina
+%\usepackage[justification=centering]{caption} % para caption largos y centrados.
+\usepackage[final]{pdfpages}
+\usepackage{verbatim}
+% Definición de colores personalizados
+\definecolor{blue}{RGB}{0, 0, 255}      % Azul para palabras clave
+\definecolor{red}{RGB}{255, 0, 0}       % Rojo para cadenas
+\definecolor{gray}{RGB}{128, 128, 128}  % Gris para comentarios
+\definecolor{green}{RGB}{0, 128, 0}     % Verde para funciones o variables
+\definecolor{orange}{RGB}{255, 165, 0}  % Naranja para números
+%\usepackage{xcolor}
+% ESTILOS PROPIOS
+\usepackage{UFRO_Style} % Estilos propios de tablas, figuras y comandos.		
+\usepackage[]{UFRO_Tesis}	% Incorpora el uso del paquete UFRO_Tesis
+%\usepackage[noLinks]{UFRO_Tesis}	% Activa/Desactiva links en el documento.
+%\usepackage{lscape}
+%\usepackage{longtable}
+\usepackage{pdflscape} % Para rotar una página específica
+\usepackage{adjustbox} % Opcional, para ajustar tamaños
+\usepackage{array}
+%\usepackage{subfiles} % Best loaded last in the preamble
+%\usepackage[subpreambles=true]{standalone}
+%\usepackage{import}
+%\lstloadlanguages{JavaScript}
+
+% \lstdefinelanguage{JavaScript}{
+%     keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+%     keywordstyle=\color{blue}\bfseries,
+%     ndkeywords={class, export, boolean, throw, implements, import, this},
+%     ndkeywordstyle=\color{darkgray}\bfseries,
+%     identifierstyle=\color{black},
+%     sensitive=false,
+%     comment=[l]{//},
+%     morecomment=[s]{/*}{*/},
+%     commentstyle=\color{purple}\ttfamily,
+%     stringstyle=\color{red}\ttfamily,
+%     morestring=[b]',
+%     morestring=[b]"
+% }
+
+% \lstset{
+%     language=JavaScript, % Especifica el lenguaje
+%     basicstyle=\ttfamily\small, % Tipo y tamaño de fuente
+%     keywordstyle=\color{blue}\bfseries, % Color para palabras clave
+%     commentstyle=\color{green!50!black}, % Color para comentarios
+%     stringstyle=\color{orange}, % Color para cadenas de texto
+%     numbers=left, % Números de línea a la izquierda
+%     numberstyle=\tiny, % Tamaño de los números de línea
+%     stepnumber=1, % Numeración en cada línea
+%     numbersep=5pt, % Espaciado entre el código y los números
+%     breaklines=true, % Saltar líneas largas
+%     breakatwhitespace=true, % Saltar líneas en espacios
+%     frame=single, % Marco alrededor del código
+%     captionpos=b, % Posición de la leyenda (debajo del código)
+%     tabsize=4, % Tamaño de las tabulaciones
+%     showspaces=false, % No mostrar espacios
+%     showstringspaces=false, % No mostrar espacios en cadenas de texto
+%     morekeywords={function,const,let,var,return,async,await}, % Palabras clave adicionales
+%     emph={document,window,console,addEventListener}, % Resaltar funciones comunes
+%     emphstyle=\color{purple}\bfseries % Estilo para funciones resaltadas
+% }
+
+\usepackage{minted}
+% Configuración para minted (requiere -shell-escape al compilar)
+\setminted{
+    linenos,                % Mostrar números de línea
+    breaklines,             % Romper líneas largas
+    fontsize=\footnotesize, % Tamaño de fuente
+    frame=lines,            % Marco simple
+    framesep=2mm            % Espaciado del marco
+}
+\usemintedstyle{tango}
+
+
+
+% Redefinir el formato del contador de códigos para incluir el número de sección
+%\renewcommand{\thecodes}{\thechapter.\arabic{codes}}
+%\renewcommand{\thecodes}{\arabic{chapter}.\arabic{codes}}
+
+% Redefinir el comando \codecaption
+\newcommand{\codecaption}[3][]{%
+  \refstepcounter{codes}% Incrementa el contador de códigos
+    %\addcontentsline{toc}{codes}{#1}
+  
+  \addcontentsline{cod}{codes}{\thecodes\tab#2}% Agrega a la lista
+  \begin{center}
+      Código \thecodes: #2% Texto visible
+  \end{center}
+}
+
+
+% Fuzz -------------------------------------------------------------------
+% ----------------------------------------------------------------
+%\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+%		  % These have to do with the justified spacing of a line.
+%\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+% permite identificar mas facilmente las over-full h-boxes, v-boxes
+\overfullrule=2mm
+\hfuzz=2000pt
+
+
+%%% INICIO DE DOCUMENTO 
+\begin{document}
+% ------------------------------------------------------------------------
+
+
+%%% TIPO DE TESIS %%%
+%Elija sólo un tipo de Tesis según su carrera o grado
+%\ingEjTesis		%pregrado
+%\ingTesis			%pregrado
+\ingCivTesis		%pregrado
+%\magisterTesis		%postgrado
+%\doctorTesis		%postgrado
+% ------------------------------------------------------------------------
+%%% DATOS DE PORTADA %%%d
+\dept{Ciencias de La Computación e Informática}
+\faculty{Ingeniería y Ciencias}
+\carrera{Ingeniero Civil Informático}
+\carreraDos{Ingenier\'ia Civil Inform\'atica}
+\title{TITULO}
+\titlefoot{title foot}
+\author{autor}
+\matricula{matricula}
+\nivelCursado{XII Nivel}
+%\secondAuthor{Nombre Completo del Autor 2} % Sólo si corresponde
+%\thirdAuthor{Nombre Completo del Autor 3} % Sólo si corresponde
+% ------------------------------------------------------------------------
+%%% PAGINA DE FIRMA %%%
+\profguia{Dr. Profesor Guia}
+\profcorrA{Dr. Profesor Comisión A}
+\profcorrB{Dr. Profesor Comisión B}
+\directorDept{Dr. Director De departamento}
+%\profcorrC{Dr. XXX Rev3} %Sólo en caso de postgrado
+% ------------------------------------------------------------------------
+%%% PREFACIO %%%
+\dedicate{dedicatoria}		% Incluir Dedicatoria		(Opcional)
+\ack{capitulo_0/Agradecimientos}           	% Incluir Agradecimientos
+\resumenesp{capitulo_0/Resumen}            	% Incluir Resumen
+\resumening{capitulo_0/Abstract}			% Incluir Abstract 			(Opcional)
+
+% Genera portada, prefacio e índices.
+\makeTitle
+% ------------------------------------------------------------------------
+%%% CONTENIDO DE LA TESIS %%%
+% Inclusión del contenido de la tesis por capítulo.
+\include{capitulo_1/Introduccion}
+\include{capitulo_2/Antecedentes_generales}
+\include{capitulo_3/Metodologia}
+\include{capitulo_4/Actividades_realizadas}
+\include{capitulo_5/resultados_discusion}
+\include{capitulo_6/conclusiones}
+%\include{capitulo_6/Conclusion}
+
+%\abreviaciones{capitulo_0/Abreviaciones}	% Incluir Abreviaciones (Opcional)
+% ------------------------------------------------------------------------
+%%% INCLUSION DE BIBLIOGRAFIA *.bib %%%
+\bibliography{bibliografia/Bibliografia}
+% ------------------------------------------------------------------------
+%%% INCLUSION DE ANEXOS %%%
+\appendix
+\include{anexo/Anexo}						% Incluir Anexos (Opcional, pero altamente recomendado)
+
+\end{document}
+% ------------------------------------------------------------------------ 
